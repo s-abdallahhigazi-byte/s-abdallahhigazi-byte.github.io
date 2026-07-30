@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdallah Yasser — AI Student &amp; Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#060d1c;
+    --navy:#0d1c37;
+    --navy-light:#152a4d;
+    --gold:#c9a227;
+    --gold-bright:#e8c766;
+    --ink:#f3f1e7;
+    --muted:#8996b3;
+    --line: rgba(201,162,39,0.28);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--navy-deep);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.8;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--gold); color:var(--navy-deep);}
+  a{color:inherit;text-decoration:none;}
+
+  .noise{
+    position:fixed; inset:0; pointer-events:none; opacity:.035; z-index:1;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 22px 6vw;
+    backdrop-filter:blur(10px);
+    background:linear-gradient(180deg, rgba(6,13,28,.85), rgba(6,13,28,0));
+  }
+  .brand{
+    font-family:'Cormorant Garamond', serif; font-weight:700; font-size:1.2rem; color:var(--gold-bright);
+    letter-spacing:.5px;
+  }
+  nav{display:flex; gap:32px; font-size:.85rem; color:var(--muted); text-transform:uppercase; letter-spacing:1px;}
+  nav a{transition:color .25s;}
+  nav a:hover{color:var(--gold-bright);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    position:relative;
+    padding: 140px 6vw 100px;
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(201,162,39,.10), transparent 60%),
+      var(--navy-deep);
+  }
+  .seal{
+    width:132px; height:132px; margin-bottom:34px;
+    animation: seal-in 1.1s cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes seal-in{
+    from{opacity:0; transform:scale(.6) rotate(-25deg);}
+    to{opacity:1; transform:scale(1) rotate(0deg);}
+  }
+  .eyebrow{
+    color:var(--gold); font-size:.8rem; letter-spacing:3px; font-weight:500;
+    margin-bottom:18px; opacity:.9; text-transform:uppercase;
+    animation: fade-up .8s ease .3s both;
+  }
+  h1.name{
+    font-family:'Cormorant Garamond', serif; font-weight:700;
+    font-size:clamp(2.8rem, 8vw, 5.6rem);
+    color:var(--ink);
+    animation: fade-up .8s ease .45s both;
+    letter-spacing:.5px;
+  }
+  .title-en{
+    font-family:'IBM Plex Mono', monospace; font-size:.9rem;
+    color:var(--gold-bright); letter-spacing:2px; margin-top:18px;
+    animation: fade-up .8s ease .6s both;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:10px 22px; display:inline-block; text-transform:uppercase;
+  }
+  @keyframes fade-up{
+    from{opacity:0; transform:translateY(16px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  .scroll-hint{
+    position:absolute; bottom:34px; font-size:.75rem; color:var(--muted);
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    text-transform:uppercase; letter-spacing:1px;
+  }
+  .scroll-hint span{width:1px; height:34px; background:linear-gradient(var(--gold), transparent);}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{
+    padding: 130px 6vw;
+    max-width:980px; margin:0 auto;
+    position:relative;
+  }
+  .section-label{
+    display:flex; align-items:center; gap:16px;
+    margin-bottom:46px;
+  }
+  .section-label .rule{flex:1; height:1px; background:var(--line);}
+  .section-label span{
+    font-family:'Cormorant Garamond', serif; font-size:1.6rem; color:var(--gold-bright);
+    white-space:nowrap; font-weight:600;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-text{
+    font-size:1.18rem; color:var(--ink); max-width:760px;
+    font-weight:300; line-height:1.9;
+  }
+  .about-text b{color:var(--gold-bright); font-weight:500;}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:2px; background:var(--line);
+    border:1px solid var(--line);
+  }
+  .skill-cat{background:var(--navy-deep); padding:28px 26px;}
+  .skill-cat h3{
+    font-family:'Cormorant Garamond', serif; color:var(--gold-bright); font-size:1.15rem; margin-bottom:16px; font-weight:700;
+  }
+  .skill-cat ul{list-style:none;}
+  .skill-cat li{
+    font-family:'IBM Plex Mono', monospace; font-size:.86rem; color:var(--ink);
+    padding:6px 0; border-bottom:1px dashed rgba(255,255,255,.06);
+    display:flex; align-items:center; gap:10px;
+  }
+  .skill-cat li:last-child{border-bottom:none;}
+  .skill-cat li::before{content:"—"; color:var(--gold);}
+
+  /* ---------- PROJECT ---------- */
+  .project-card{
+    background:var(--navy);
+    border:1px solid var(--line);
+    padding:48px;
+    position:relative;
+    overflow:hidden;
+  }
+  .project-card::before{
+    content:"";
+    position:absolute; top:-40%; right:-10%; width:60%; height:180%;
+    background:radial-gradient(circle, rgba(201,162,39,.09), transparent 60%);
+  }
+  .project-head{
+    display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:12px;
+    margin-bottom:22px; position:relative;
+  }
+  .project-head h3{
+    font-family:'Cormorant Garamond', serif; font-size:2rem; color:var(--ink); font-weight:700;
+  }
+  .project-head h3 em{color:var(--gold-bright); font-style:normal;}
+  .status-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:.72rem; color:var(--gold);
+    border:1px solid var(--gold); border-radius:999px; padding:5px 14px; letter-spacing:1px;
+    text-transform:uppercase;
+  }
+  .project-desc{color:var(--ink); font-size:1.05rem; font-weight:300; max-width:640px; position:relative;}
+  .project-tags{display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; position:relative;}
+  .project-tags span{
+    font-family:'IBM Plex Mono', monospace; font-size:.75rem; color:var(--muted);
+    border:1px solid rgba(137,150,179,.35); padding:5px 12px; border-radius:4px;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:18px 40px;
+  }
+  .contact-item{
+    padding:22px 0; border-bottom:1px solid var(--line);
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .contact-item .label{font-size:.75rem; color:var(--muted); font-family:'IBM Plex Mono', monospace; letter-spacing:1px; text-transform:uppercase;}
+  .contact-item .value{font-size:1.05rem; color:var(--ink); transition:.25s;}
+  .contact-item a:hover .value{color:var(--gold-bright);}
+
+  footer{
+    text-align:center; padding:50px 6vw; color:var(--muted); font-size:.82rem;
+    border-top:1px solid var(--line);
+  }
+  footer b{color:var(--gold);}
+
+  @media(max-width:640px){
+    .contact-grid{grid-template-columns:1fr;}
+    header{padding:18px 5vw;}
+    nav{gap:18px; font-size:.72rem;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+<div class="noise"></div>
+
+<header>
+  <div class="brand">Abdallah Yasser</div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#project">Project</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <svg class="seal" viewBox="0 0 120 120" fill="none">
+    <circle cx="60" cy="60" r="56" stroke="#c9a227" stroke-width="1.4" stroke-dasharray="3 5"/>
+    <circle cx="60" cy="60" r="45" stroke="#e8c766" stroke-width="1"/>
+    <path d="M60 34 L60 86 M42 44 L42 74 Q42 82 60 82 Q78 82 78 74 L78 44 M60 34 L44 40 M60 34 L76 40 M42 44 L60 50 L78 44"
+          stroke="#e8c766" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <circle cx="42" cy="52" r="7" stroke="#e8c766" stroke-width="1.2"/>
+    <circle cx="78" cy="52" r="7" stroke="#e8c766" stroke-width="1.2"/>
+  </svg>
+  <div class="eyebrow">Legal Platform — Cairo, Egypt</div>
+  <h1 class="name">Abdallah Yasser</h1>
+  <div class="title-en">AI Student &amp; Developer</div>
+  <div class="scroll-hint"><span></span>Scroll</div>
+</section>
+
+<section id="about">
+  <div class="section-label"><span>About</span><div class="rule"></div></div>
+  <p class="about-text">
+    Second-year AI student at Zewail City of Science and Technology, and the sole developer behind
+    <b>Legal Platform</b> — a comprehensive Arabic legal-tech SaaS built entirely from scratch, featuring
+    multi-role authentication and dashboards, legal consultations, contract management, and an AI-powered
+    judicial decisions assistant, built on <b>Supabase</b> and <b>Edge Functions</b> to serve individuals,
+    lawyers, and companies across the Arabic-speaking market.
+  </p>
+  <p class="about-text" style="margin-top:22px;">
+    I turn complexity, legal or technical, into simple systems that simplify operations across any field
+    or industry, for companies of any size or category.
+  </p>
+</section>
+
+<section id="skills">
+  <div class="section-label"><span>Skills</span><div class="rule"></div></div>
+  <div class="skills-grid">
+    <div class="skill-cat">
+      <h3>Frontend</h3>
+      <ul><li>HTML / CSS / JavaScript</li><li>React</li></ul>
+    </div>
+    <div class="skill-cat">
+      <h3>Backend &amp; Database</h3>
+      <ul>
+        <li>Supabase (DB, Auth, Storage)</li>
+        <li>Edge Functions</li>
+        <li>Row Level Security (RLS)</li>
+        <li>Firebase Auth</li>
+      </ul>
+    </div>
+    <div class="skill-cat">
+      <h3>Languages</h3>
+      <ul><li>Python</li><li>JavaScript</li></ul>
+    </div>
+    <div class="skill-cat">
+      <h3>AI Integration</h3>
+      <ul><li>OpenRouter API</li><li>AI Legal Assistant Dev</li></ul>
+    </div>
+    <div class="skill-cat">
+      <h3>Deployment &amp; Tools</h3>
+      <ul><li>Vercel</li><li>Git / GitHub</li></ul>
+    </div>
+    <div class="skill-cat">
+      <h3>Concepts</h3>
+      <ul><li>Multi-role Auth Systems</li><li>Admin Dashboards</li><li>SaaS Architecture</li></ul>
+    </div>
+  </div>
+</section>
+
+<section id="project">
+  <div class="section-label"><span>Project</span><div class="rule"></div></div>
+  <div class="project-card">
+    <div class="project-head">
+      <h3>Legal <em>Platform</em></h3>
+      <span class="status-tag">In Development</span>
+    </div>
+    <p class="project-desc">
+      A comprehensive legal reference for Egyptian legislation — searchable across thousands of laws,
+      rulings, and legal references, with an AI assistant specialized in Egyptian law, and a multi-role
+      dashboard for users, lawyers, and administrators.
+    </p>
+    <div class="project-tags">
+      <span>Supabase</span><span>Edge Functions</span><span>RLS</span><span>OpenRouter API</span><span>React</span><span>Multi-role Dashboard</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-label"><span>Contact</span><div class="rule"></div></div>
+  <div class="contact-grid">
+    <a href="mailto:abdallahyasser570@gmail.com" class="contact-item">
+      <span class="label">Email</span>
+      <span class="value">abdallahyasser570@gmail.com</span>
+    </a>
+    <a href="mailto:s-abdallah.higazi@zewailcity.edu.eg" class="contact-item">
+      <span class="label">University Email</span>
+      <span class="value">s-abdallah.higazi@zewailcity.edu.eg</span>
+    </a>
+    <a href="tel:+201101508281" class="contact-item">
+      <span class="label">Phone</span>
+      <span class="value">01101508281</span>
+    </a>
+    <a href="https://www.linkedin.com/in/abdallah-yasser-817a19313" target="_blank" class="contact-item">
+      <span class="label">LinkedIn</span>
+      <span class="value">abdallah-yasser</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <b>Abdallah Yasser</b> — AI Student &amp; Developer · Legal Platform © 2026
+</footer>
+
+</body>
+</html>
